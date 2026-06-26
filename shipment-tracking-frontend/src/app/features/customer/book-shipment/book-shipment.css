@@ -257,3 +257,14 @@ button {
   color: #ef4444;
   font-size: 18px;
 }
+.error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.review-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}

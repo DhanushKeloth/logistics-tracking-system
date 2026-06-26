@@ -1,0 +1,37 @@
+<div class="profile-layout">
+  <!-- Header -->
+  <!-- <div class="profile-header">
+    <div>
+      <h1>My Profile</h1>
+      <p>Manage your account information and preferences</p>
+    </div>
+
+    <button class="edit-btn">
+      <mat-icon>edit</mat-icon>
+      Edit Profile
+    </button>
+  </div> -->
+
+  <!-- Minimal Tabs -->
+  <div class="profile-tabs">
+    <a
+      routerLink="/customer/profile"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Overview
+    </a>
+
+    <a
+      routerLink="/customer/profile/addresses"
+      routerLinkActive="active"
+    >
+      Addresses
+    </a>
+  </div>
+
+  <!-- Child Content -->
+  <div class="profile-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

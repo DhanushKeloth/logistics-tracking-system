@@ -1,0 +1,141 @@
+.address-page {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Header */
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.address-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.address-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.add-btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Grid */
+.address-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Card */
+.address-card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label-section h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.default-badge {
+  background: #ecfdf3;
+  color: #16a34a;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  border: none;
+  background: #f8fafc;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.actions mat-icon {
+  font-size: 20px;
+}
+
+.address-body p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #334155;
+}
+
+.coordinates {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.coordinates div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.coordinates mat-icon {
+  font-size: 18px;
+  color: #2563eb;
+}
+
+.coordinates span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .address-grid {
+    grid-template-columns: 1fr;
+  }
+}

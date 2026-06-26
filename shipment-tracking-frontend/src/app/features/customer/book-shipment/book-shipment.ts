@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BookShipmentRequest } from '../../../core/models/shipment-models/BookShipment.model';
 import { ShipmentService } from '../../../core/services/shipment/shipment.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-book-shipment',
@@ -97,21 +98,24 @@ export class BookShipment implements AfterViewInit {
     }));
   }
 
-  goToReview() {
-    this.shipmentService.getShipmentQuoteApi(this.shipmentData()).subscribe({
-      next: (quote) => {
-        console.log('Shipment Quote:', quote);
-
-        this.router.navigate(['/customer/review-shipment'], {
-          state: {
-            shipment: this.shipmentData(),
-            quote: quote,
-          },
-        });
-      },
-      error: (error) => {
-        console.error('Quote Error:', error);
-      },
-    });
+  goToReview(form: NgForm) {
+  if (form.invalid) {
+    form.control.markAllAsTouched();
+    return;
   }
+
+  this.shipmentService.getShipmentQuoteApi(this.shipmentData()).subscribe({
+    next: (quote) => {
+      this.router.navigate(['/customer/review-shipment'], {
+        state: {
+          shipment: this.shipmentData(),
+          quote: quote
+        }
+      });
+    },
+    error: (error) => {
+      console.error('Quote Error:', error);
+    }
+  });
+}
 }

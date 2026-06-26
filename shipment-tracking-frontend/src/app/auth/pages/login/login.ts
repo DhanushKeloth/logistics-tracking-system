@@ -66,8 +66,8 @@ export class Login {
       )
       .subscribe(response => {
 
-        this.authService.setToken(response.accessToken);
-
+        this.authService.setToken(response.accessToken);  
+        this.authService.setFullname(response.fullName);
         alert(`${response.fullName} ${response.role}`)
         if (response.role === 'Admin') {
           this.router.navigate(['/admin']);

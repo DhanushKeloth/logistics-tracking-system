@@ -1,4 +1,4 @@
-<div class="book-page">
+<form #shipmentForm="ngForm" class="book-page">
   <!-- Header -->
   <div class="book-header">
     <div>
@@ -16,8 +16,10 @@
   </div>
 
   <div class="book-grid">
+
     <!-- LEFT PANEL -->
     <div class="left-panel">
+
       <!-- Pickup -->
       <div class="form-card" id="pickup">
         <div class="card-header">
@@ -25,8 +27,6 @@
             <mat-icon class="green">location_on</mat-icon>
             <h3>Pickup Address</h3>
           </div>
-
-          <button type="button">Use My Location</button>
         </div>
 
         <input
@@ -34,7 +34,12 @@
           placeholder="Pickup Address"
           [(ngModel)]="shipmentData().pickupAddress"
           name="pickupAddress"
+          required
+          #pickupAddress="ngModel"
         />
+        @if (pickupAddress.invalid && pickupAddress.touched) {
+          <small class="error">Pickup address is required</small>
+        }
 
         <div class="row">
           <input
@@ -42,6 +47,8 @@
             placeholder="Latitude"
             [(ngModel)]="shipmentData().pickupLat"
             name="pickupLat"
+            required
+            #pickupLat="ngModel"
           />
 
           <input
@@ -49,6 +56,8 @@
             placeholder="Longitude"
             [(ngModel)]="shipmentData().pickupLng"
             name="pickupLng"
+            required
+            #pickupLng="ngModel"
           />
         </div>
       </div>
@@ -60,8 +69,6 @@
             <mat-icon class="red">location_on</mat-icon>
             <h3>Drop-off Address</h3>
           </div>
-
-          <button type="button">Use My Location</button>
         </div>
 
         <input
@@ -69,7 +76,12 @@
           placeholder="Drop-off Address"
           [(ngModel)]="shipmentData().dropoffAddress"
           name="dropoffAddress"
+          required
+          #dropoffAddress="ngModel"
         />
+        @if (dropoffAddress.invalid && dropoffAddress.touched) {
+          <small class="error">Drop-off address is required</small>
+        }
 
         <div class="row">
           <input
@@ -77,6 +89,8 @@
             placeholder="Latitude"
             [(ngModel)]="shipmentData().dropoffLat"
             name="dropoffLat"
+            required
+            #dropoffLat="ngModel"
           />
 
           <input
@@ -84,6 +98,8 @@
             placeholder="Longitude"
             [(ngModel)]="shipmentData().dropoffLng"
             name="dropoffLng"
+            required
+            #dropoffLng="ngModel"
           />
         </div>
       </div>
@@ -102,17 +118,28 @@
           placeholder="Recipient Name"
           [(ngModel)]="shipmentData().recipientName"
           name="recipientName"
+          required
+          #recipientName="ngModel"
         />
+        @if (recipientName.invalid && recipientName.touched) {
+          <small class="error">Recipient name is required</small>
+        }
 
         <input
           type="text"
           placeholder="Recipient Phone"
           [(ngModel)]="shipmentData().recipientPhone"
           name="recipientPhone"
+          required
+          pattern="^[0-9]{10}$"
+          #recipientPhone="ngModel"
         />
+        @if (recipientPhone.invalid && recipientPhone.touched) {
+          <small class="error">Enter valid phone number</small>
+        }
       </div>
 
-      <!-- Instructions -->
+      <!-- Instructions (Optional) -->
       <div class="form-card">
         <div class="card-header">
           <div class="title">
@@ -128,13 +155,14 @@
     <!-- RIGHT PANEL -->
     <div class="right-panel">
       <div class="shipment-card" id="items">
+
         <div class="card-header">
           <div class="title">
             <mat-icon>inventory_2</mat-icon>
             <h3>Shipment Items</h3>
           </div>
 
-          <button class="add-btn" type="button" (click)="addItem()">
+          <button type="button" class="add-btn" (click)="addItem()">
             <mat-icon>add</mat-icon>
             Add Item
           </button>
@@ -142,30 +170,39 @@
 
         @for (item of shipmentData().items; track $index) {
           <div class="item-block">
+
             <div class="item-header">
-              <div class="item-number">
-                {{ $index + 1 }}
-              </div>
+              <div class="item-number">{{ $index + 1 }}</div>
 
               @if (shipmentData().items.length > 1) {
-                <button class="remove-btn" type="button" (click)="removeItem($index)">
+                <button
+                  class="remove-btn"
+                  type="button"
+                  (click)="removeItem($index)"
+                >
                   <mat-icon>delete</mat-icon>
                 </button>
               }
             </div>
+
             <input
               type="text"
               placeholder="Description"
               [(ngModel)]="item.description"
               [name]="'description' + $index"
+              required
+              #description="ngModel"
             />
 
             <div class="row">
               <input
                 type="number"
-                placeholder="Weight (kg)"
+                placeholder="Weight"
                 [(ngModel)]="item.weight"
                 [name]="'weight' + $index"
+                required
+                min="0.1"
+                #weight="ngModel"
               />
 
               <input
@@ -173,6 +210,9 @@
                 placeholder="Quantity"
                 [(ngModel)]="item.quantity"
                 [name]="'quantity' + $index"
+                required
+                min="1"
+                #quantity="ngModel"
               />
             </div>
 
@@ -221,44 +261,24 @@
             <strong>{{ totalWeight() }} kg</strong>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Bottom Summary -->
-  <div class="bottom-bar">
-    <div class="summary-box">
-      <mat-icon>schedule</mat-icon>
-      <div>
-        <span>Estimated Delivery</span>
-        <p>May 28, 2024 by 03:00 PM</p>
       </div>
     </div>
 
-    <div class="summary-box">
-      <mat-icon>route</mat-icon>
-      <div>
-        <span>Distance</span>
-        <p>626 km</p>
-      </div>
-    </div>
-
-    <div class="summary-box">
-      <mat-icon>sell</mat-icon>
-      <div>
-        <span>Estimated Price</span>
-        <p>₹1,250.00</p>
-      </div>
-    </div>
   </div>
 
   <!-- Footer -->
   <div class="footer-actions">
     <button class="cancel-btn" type="button">Cancel</button>
 
-    <button class="review-btn" type="button" (click)="goToReview()">
+    <button
+      class="review-btn"
+      type="button"
+      [disabled]="shipmentForm.invalid"
+      (click)="goToReview(shipmentForm)"
+    >
       Review Shipment
       <mat-icon>arrow_forward</mat-icon>
     </button>
   </div>
-</div>
+</form>

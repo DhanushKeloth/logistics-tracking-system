@@ -1,0 +1,66 @@
+<div class="address-page">
+  <!-- Header -->
+  <div class="address-header">
+    <div>
+      <h1>Saved Addresses</h1>
+      <p>Manage your pickup and delivery locations</p>
+    </div>
+
+    <button class="add-btn" (click)="addNewAddress()">
+      <mat-icon>add</mat-icon>
+      Add New Address
+    </button>
+  </div>
+
+  <!-- Address Cards -->
+  <div class="address-grid">
+    @for (address of addresses(); track address.id) {
+      <div class="address-card">
+
+        <div class="card-top">
+          <div class="label-section">
+            <h3>{{ address.label }}</h3>
+
+            @if (address.isDefault) {
+              <span class="default-badge">Default</span>
+            }
+          </div>
+
+          <div class="actions">
+            <button (click)="editAddress(address.id!)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button (click)="deleteAddress(address.id!)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="address-body">
+          <p>{{ address.addressLine1 }}</p>
+          <p>{{ address.addressLine2 }}</p>
+
+          <p>
+            {{ address.city }}, {{ address.state }}
+          </p>
+
+          <p>{{ address.postalCode }}</p>
+        </div>
+
+        <div class="coordinates">
+          <div>
+            <mat-icon>place</mat-icon>
+            <span>Lat: {{ address.latitude }}</span>
+          </div>
+
+          <div>
+            <mat-icon>explore</mat-icon>
+            <span>Lng: {{ address.longitude }}</span>
+          </div>
+        </div>
+
+      </div>
+    }
+  </div>
+</div>

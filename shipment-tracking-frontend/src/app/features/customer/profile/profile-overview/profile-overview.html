@@ -1,0 +1,135 @@
+<div class="profile-page">
+  @if (profile(); as user) {
+
+    <!-- Header -->
+    <div class="profile-header">
+      <div>
+        <h1>My Profile</h1>
+        <p>Manage your account information and preferences</p>
+      </div>
+
+      <button class="edit-btn">
+        <mat-icon>edit</mat-icon>
+        Edit Profile
+      </button>
+    </div>
+
+    <!-- Profile Hero Card -->
+    <div class="profile-hero">
+      <div class="profile-left">
+        <div class="avatar-box">
+          @if (user.profileImageUrl) {
+            <img [src]="user.profileImageUrl" alt="Profile" />
+          } @else {
+            <span>{{ user.fullName.charAt(0) }}</span>
+          }
+        </div>
+
+        <div class="profile-info">
+          <h2>{{ user.fullName }}</h2>
+          <p>{{ user.email }}</p>
+
+          <div class="role-badge">
+            <mat-icon>verified_user</mat-icon>
+            Customer
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-right">
+        <button class="secondary-btn" (click)="navigateToAddresses()">
+          <mat-icon>location_on</mat-icon>
+          Manage Addresses
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="profile-grid">
+
+      <!-- Contact Information -->
+      <div class="info-card">
+        <div class="card-title">
+          <mat-icon>contact_phone</mat-icon>
+          <h3>Contact Information</h3>
+        </div>
+
+        <div class="info-row">
+          <span>Phone Number</span>
+          <strong>{{ user.phoneNumber }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Alternate Phone</span>
+          <strong>{{ user.alternatePhoneNumber }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Email</span>
+          <strong>{{ user.email }}</strong>
+        </div>
+      </div>
+
+      <!-- Account Information -->
+      <div class="info-card">
+        <div class="card-title">
+          <mat-icon>badge</mat-icon>
+          <h3>Account Information</h3>
+        </div>
+
+        <div class="info-row">
+          <span>User ID</span>
+          <strong>#{{ user.userId }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Role</span>
+          <strong>Customer</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Status</span>
+          <strong class="active-status">Active</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions-card">
+      <div class="card-title">
+        <mat-icon>bolt</mat-icon>
+        <h3>Quick Actions</h3>
+      </div>
+
+      <div class="actions-grid">
+
+        <button class="action-btn" (click)="navigateToAddresses()">
+          <mat-icon>location_on</mat-icon>
+          <span>Manage Addresses</span>
+        </button>
+
+        <button class="action-btn" (click)="navigateToShipments()">
+          <mat-icon>inventory_2</mat-icon>
+          <span>My Shipments</span>
+        </button>
+
+        <button class="action-btn" (click)="navigateToTracking()">
+          <mat-icon>local_shipping</mat-icon>
+          <span>Track Shipment</span>
+        </button>
+
+        <button class="action-btn logout" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+
+      </div>
+    </div>
+
+  } @else {
+    <div class="loading-state">
+      <p>Loading profile...</p>
+    </div>
+  }
+</div>

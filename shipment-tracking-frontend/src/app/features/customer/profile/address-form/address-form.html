@@ -1,0 +1,133 @@
+<div class="address-form-page">
+  <!-- Header -->
+  <div class="form-header">
+    <div>
+      <h1>
+        {{ isEditMode() ? 'Edit Address' : 'Add New Address' }}
+      </h1>
+      <p>Save your address for faster bookings</p>
+    </div>
+  </div>
+
+  <form #addressForm="ngForm" class="address-form">
+
+    <!-- Label -->
+    <div class="form-group">
+      <label>Label</label>
+      <input
+        type="text"
+        [(ngModel)]="address().label"
+        name="label"
+        required
+        #label="ngModel"
+      />
+      @if (label.invalid && label.touched) {
+        <small class="error">Label is required</small>
+      }
+    </div>
+
+    <!-- Address Line 1 -->
+    <div class="form-group">
+      <label>Address Line 1</label>
+      <input
+        type="text"
+        [(ngModel)]="address().addressLine1"
+        name="addressLine1"
+        required
+        #addressLine1="ngModel"
+      />
+    </div>
+
+    <!-- Address Line 2 -->
+    <div class="form-group">
+      <label>Address Line 2</label>
+      <input
+        type="text"
+        [(ngModel)]="address().addressLine2"
+        name="addressLine2"
+      />
+    </div>
+
+    <!-- Row -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>City</label>
+        <input
+          type="text"
+          [(ngModel)]="address().city"
+          name="city"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>State</label>
+        <input
+          type="text"
+          [(ngModel)]="address().state"
+          name="state"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Row -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>Postal Code</label>
+        <input
+          type="text"
+          [(ngModel)]="address().postalCode"
+          name="postalCode"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Latitude</label>
+        <input
+          type="number"
+          [(ngModel)]="address().latitude"
+          name="latitude"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Longitude</label>
+        <input
+          type="number"
+          [(ngModel)]="address().longitude"
+          name="longitude"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Default -->
+    <div class="checkbox-group">
+      <input
+        type="checkbox"
+        [(ngModel)]="address().isDefault"
+        name="isDefault"
+      />
+      <label>Set as default address</label>
+    </div>
+
+    <!-- Footer -->
+    <div class="form-actions">
+      <button type="button" class="cancel-btn" (click)="cancel()">
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        class="save-btn"
+        (click)="saveAddress(addressForm)"
+      >
+        {{ isEditMode() ? 'Update Address' : 'Save Address' }}
+      </button>
+    </div>
+
+  </form>
+</div>

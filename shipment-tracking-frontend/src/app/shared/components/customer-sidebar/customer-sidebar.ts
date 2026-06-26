@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon'
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-customer-sidebar',
@@ -9,6 +10,11 @@ import {MatIconModule} from '@angular/material/icon'
   styleUrl: './customer-sidebar.css',
 })
 export class CustomerSidebar {
+  userName='';
+  constructor(private authService:AuthService,private router:Router){
+  
+  }
+
    menuItems = [
     {
       label: 'Dashboard',
@@ -41,4 +47,7 @@ export class CustomerSidebar {
       route: '/customer/help'
     }
   ];
+  logout(){
+    this.authService.logout();
+  }
 }

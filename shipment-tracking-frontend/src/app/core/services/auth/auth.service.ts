@@ -12,20 +12,21 @@ import { RegisterCustomerModel } from '../../../shared/models/RegisterCustomer.m
 import { RegisterDriverModel } from '../../../shared/models/RegisterDriver.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   // Matches the exact key your interceptor is looking for
-  private readonly TOKEN_KEY = 'token'; 
+  private readonly TOKEN_KEY = 'token';
+  private readonly FULLNAME_KEY = 'fullname';
 
-  constructor(private http: HttpClient, private router: Router) {}
-
-  
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   public loginApiCall(credentials: LoginModel) {
     let url = environment.baseUrl + '/Auth/login';
     return this.http.post<AuthResponseModel>(url, credentials);
-    
   }
 
   public registerCustomerApiCall(data: RegisterCustomerModel) {
@@ -38,6 +39,12 @@ export class AuthService {
     return this.http.post(url, data);
   }
 
+  public setFullname(fullName: string): void {
+    sessionStorage.setItem(this.FULLNAME_KEY, fullName);
+  }
+  public getFullname(): string | null {
+    return sessionStorage.getItem(this.FULLNAME_KEY);
+  }
   // --- TOKEN MANAGEMENT ---
 
   public setToken(token: string): void {
@@ -50,16 +57,17 @@ export class AuthService {
 
   public logout(): void {
     sessionStorage.removeItem(this.TOKEN_KEY);
+    sessionStorage.removeItem(this.FULLNAME_KEY);
     this.router.navigate(['/auth/login']);
   }
 
   public isLoggedIn(): boolean {
     const token = this.getToken();
-    return !!token; 
+    return !!token;
   }
 
   // --- JWT DECODING (ASP.NET Core Specific) ---
-  
+
   public getRole(): string | null {
     const token = this.getToken();
     if (!token) return null;
@@ -72,10 +80,9 @@ export class AuthService {
 
       // ASP.NET Core often maps Roles to this specific XML schema URL by default
       const aspNetRoleClaim = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
-      
+
       // Return the Microsoft claim, or fall back to a standard 'role' property
       return decodedToken[aspNetRoleClaim] || decodedToken.role || null;
-      
     } catch (error) {
       console.error('Error decoding token:', error);
       return null;
