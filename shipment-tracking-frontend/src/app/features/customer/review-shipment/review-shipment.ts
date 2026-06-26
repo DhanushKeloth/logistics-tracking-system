@@ -69,11 +69,13 @@ export class ReviewShipment {
 
         this.router.navigate(['/customer/confirm-shipment'], {
           state: {
-            shipment: this.shipment,
-            trackingNumber: response.trackingNumber,
-            status: response.status,
-            shipmentId: response.id
-          }
+          shipment: this.shipment,
+          booking: response, // full backend response
+          totalItems: this.totalItems,
+          totalQuantity: this.totalQuantity,
+          totalWeight: this.totalWeight,
+          quote: this.quote
+        }
         });
       },
       error: (error) => {

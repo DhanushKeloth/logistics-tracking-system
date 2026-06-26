@@ -2973,11 +2973,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj",
+      "projectUniqueName": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj",
       "projectName": "ShipmentTrackingAPI",
-      "projectPath": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj",
+      "projectPath": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj",
       "packagesPath": "/Users/dhanushkeloth/.nuget/packages/",
-      "outputPath": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/obj/",
+      "outputPath": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/dhanushkeloth/.nuget/NuGet/NuGet.Config"

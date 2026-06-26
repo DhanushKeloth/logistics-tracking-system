@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/ShipmentTrackingAPI.Tests.csproj": {}
+    "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/ShipmentTrackingAPI.Tests.csproj": {}
   },
   "projects": {
-    "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/ShipmentTrackingAPI.Tests.csproj": {
+    "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/ShipmentTrackingAPI.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/ShipmentTrackingAPI.Tests.csproj",
+        "projectUniqueName": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/ShipmentTrackingAPI.Tests.csproj",
         "projectName": "ShipmentTrackingAPI.Tests",
-        "projectPath": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/ShipmentTrackingAPI.Tests.csproj",
+        "projectPath": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/ShipmentTrackingAPI.Tests.csproj",
         "packagesPath": "/Users/dhanushkeloth/.nuget/packages/",
-        "outputPath": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/obj/",
+        "outputPath": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dhanushkeloth/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj": {
-                "projectPath": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj"
+              "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj": {
+                "projectPath": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj"
               }
             }
           }
@@ -379,14 +379,14 @@
         }
       }
     },
-    "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj": {
+    "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj",
+        "projectUniqueName": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj",
         "projectName": "ShipmentTrackingAPI",
-        "projectPath": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj",
+        "projectPath": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/ShipmentTrackingAPI.csproj",
         "packagesPath": "/Users/dhanushkeloth/.nuget/packages/",
-        "outputPath": "/Users/dhanushkeloth/presidio_genspark_training/capstone-projectv3/backend/ShipmentTrackingAPI/obj/",
+        "outputPath": "/Users/dhanushkeloth/logistics_shipment_tracking/capstone-projectv3/backend/ShipmentTrackingAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dhanushkeloth/.nuget/NuGet/NuGet.Config"

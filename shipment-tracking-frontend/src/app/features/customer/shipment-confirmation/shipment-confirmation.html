@@ -25,7 +25,10 @@
 
       <div>
         <h3>Shipment Booked Successfully!</h3>
-        <p>Your shipment has been created. You will receive updates as your package moves.</p>
+        <p>
+          Your shipment has been created successfully.
+          Tracking ID {{ booking.trackingNumber }} has been generated.
+        </p>
       </div>
     </div>
   </div>
@@ -42,14 +45,14 @@
         <h4>Your Tracking Number</h4>
 
         <div class="tracking-row">
-          <h2>{{ trackingNumber }}</h2>
+          <h2>{{ booking.trackingNumber }}</h2>
 
           <button class="copy-btn" (click)="copyTrackingNumber()">
             <mat-icon>content_copy</mat-icon>
           </button>
         </div>
 
-        <p>May 22, 2024 at 10:24 AM</p>
+        <p>{{ booking.createdAt | date:'medium' }}</p>
       </div>
     </div>
 
@@ -85,8 +88,12 @@
           Pickup Address
         </div>
 
-        <p>123 Tech Park, Madhapur, Hyderabad, TS 500081</p>
-        <span>Lat: 17.4483, Lng: 78.3915</span>
+        <p>{{ shipment.pickupAddress }}</p>
+
+        <span>
+          Lat: {{ shipment.pickupLat }},
+          Lng: {{ shipment.pickupLng }}
+        </span>
       </div>
 
       <!-- Recipient -->
@@ -96,30 +103,36 @@
           Recipient Details
         </div>
 
-        <p>Rahul Sharma</p>
-        <p>+919876543210</p>
+        <p>{{ shipment.recipientName }}</p>
+        <p>{{ shipment.recipientPhone }}</p>
       </div>
 
       <!-- Items -->
       <div class="summary-block items-box">
         <div class="summary-title">
           <mat-icon>inventory_2</mat-icon>
-          Shipment Items (2)
+          Shipment Items ({{ totalItems }})
         </div>
 
-        <div class="mini-item">
-          <span>Dell XPS 15 Laptop in Box</span>
-          <span>Qty: 1 • 2.5kg</span>
-        </div>
-
-        <div class="mini-item">
-          <span>Signed Legal Documents</span>
-          <span>Qty: 2 • 0.5kg</span>
-        </div>
+        @for (item of shipment.items; track $index) {
+          <div class="mini-item">
+            <span>{{ item.description }}</span>
+            <span>
+              Qty: {{ item.quantity }} • {{ item.weight }}kg
+            </span>
+          </div>
+        }
 
         <div class="item-footer">
-          <div>Total Quantity <strong>3</strong></div>
-          <div>Total Weight <strong>3.0 kg</strong></div>
+          <div>
+            Total Quantity
+            <strong>{{ totalQuantity }}</strong>
+          </div>
+
+          <div>
+            Total Weight
+            <strong>{{ totalWeight }} kg</strong>
+          </div>
         </div>
       </div>
 
@@ -130,8 +143,12 @@
           Drop-off Address
         </div>
 
-        <p>456 Office Tower, Koramangala, Bengaluru, KA 560034</p>
-        <span>Lat: 12.9352, Lng: 77.6245</span>
+        <p>{{ shipment.dropoffAddress }}</p>
+
+        <span>
+          Lat: {{ shipment.dropoffLat }},
+          Lng: {{ shipment.dropoffLng }}
+        </span>
       </div>
 
       <!-- Delivery -->
@@ -141,15 +158,55 @@
           Estimated Delivery
         </div>
 
-        <p>May 28, 2024 by 03:00 PM</p>
+        <p>2 Days</p>
 
-        <div class="status-pill">
-          In Transit
+        <div class="status-pill pending">
+          Looking for Driver
         </div>
       </div>
 
     </div>
   </div>
+
+  <div class="payment-card">
+  <div class="payment-header">
+    <div class="payment-icon">
+      <mat-icon>account_balance_wallet</mat-icon>
+    </div>
+    <h3>Payment Summary</h3>
+  </div>
+
+  <div class="payment-body">
+
+    <div class="payment-row">
+      <span class="label">Base Rate</span>
+      <span class="amount">₹{{ quote.baseRate }}</span>
+    </div>
+
+    <div class="payment-row">
+      <span class="label">Distance Charge</span>
+      <span class="amount">₹{{ quote.distanceCharge }}</span>
+    </div>
+
+    <div class="payment-row">
+      <span class="label">Weight Surcharge</span>
+      <span class="amount">₹{{ quote.weightSurcharge }}</span>
+    </div>
+
+    <div class="payment-row">
+      <span class="label">Platform Fee</span>
+      <span class="amount">₹{{ quote.platformFee }}</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="payment-total">
+      <span>Total Amount</span>
+      <span>₹{{ booking.totalCost }}</span>
+    </div>
+
+  </div>
+</div>
 
   <!-- What's Next -->
   <div class="next-card">
@@ -194,6 +251,7 @@
     </button>
 
     <div class="right-buttons">
+
       <button class="secondary-btn">
         <mat-icon>share</mat-icon>
         Share Tracking
@@ -203,11 +261,11 @@
         Track Shipment
         <mat-icon>arrow_forward</mat-icon>
       </button>
-      <button class="cancel-btn">
+
+      <button class="cancel-btn" (click)="cancelShipment()">
         Cancel Shipment
-        <mat-icon>arrow_forward</mat-icon>
       </button>
-      
+
     </div>
 
   </div>

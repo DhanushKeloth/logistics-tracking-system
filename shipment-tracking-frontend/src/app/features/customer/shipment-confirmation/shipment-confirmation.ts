@@ -1,27 +1,38 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { BookShipmentResponse } from '../../../core/models/shipment-models/BookShipmentResponse.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-shipment-confirmation',
-  imports: [MatIconModule],
+  imports: [MatIconModule,DatePipe],
   templateUrl: './shipment-confirmation.html',
   styleUrl: './shipment-confirmation.css',
 })
 export class ShipmentConfirmation {
-    trackingNumber = 'FS9876543210';
+  shipment!: any;
+  booking!: BookShipmentResponse;
+  totalItems!: number;
+  totalQuantity!: number;
+  totalWeight!: string;
+  quote!: any;
+  
+  constructor() {
+  
+    this.shipment = history.state.shipment;
+    this.booking = history.state.booking;
+    this.totalItems = history.state.totalItems;
+    this.totalQuantity = history.state.totalQuantity;
+    this.totalWeight = history.state.totalWeight;
+    this.quote = history.state.quote;
 
-  shipment = {
-    pickupAddress: '123 Tech Park, Madhapur, Hyderabad',
-    dropoffAddress: '456 Office Tower, Koramangala, Bengaluru',
-    recipientName: 'Rahul Sharma',
-    recipientPhone: '+919876543210',
-    estimatedDelivery: 'May 28, 2024 by 03:00 PM',
-    totalWeight: '3.0 kg',
-    totalQuantity: 3
-  };
+  }
 
   copyTrackingNumber() {
-    navigator.clipboard.writeText(this.trackingNumber);
+    navigator.clipboard.writeText(this.booking.trackingNumber);
+  }
+  cancelShipment(){
+    
   }
 }
 
